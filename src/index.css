@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hind Siliguri", "Inter", sans-serif;
+  --font-serif: "Hind Siliguri", "Georgia", serif;
+  
+  --color-bengali-orange: #A94F12;
+  --color-bengali-orange-hover: #8D3F0D;
+  --color-warm-cream: #F7F2EB;
+  --color-deep-navy: #1E3A5F;
+  --color-success-green: #2E7D32;
+  --color-brand-bg: #FAF8F5;
+}
+
+:root {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-bg);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-bg);
+  color: #1e293b;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

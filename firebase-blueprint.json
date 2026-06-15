@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "Scheme": {
+      "title": "Government Scheme",
+      "description": "Government-sponsored schemes for various citizen groups",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "category": { "type": "string" },
+        "categoryName": { "type": "string" },
+        "description": { "type": "string" },
+        "benefits": { "type": "string" },
+        "eligibility": { "type": "string" },
+        "documents": { "type": "array" },
+        "officialUrl": { "type": "string" },
+        "isPopular": { "type": "boolean" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "categoryName", "description", "officialUrl"]
+    },
+    "Job": {
+      "title": "Government/Private Job",
+      "description": "Employment opportunities and recruiting notices",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "category": { "type": "string" },
+        "categoryName": { "type": "string" },
+        "vacancy": { "type": "string" },
+        "qualification": { "type": "string" },
+        "lastDate": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "salary": { "type": "string" },
+        "isPopular": { "type": "boolean" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "categoryName", "qualification", "lastDate", "officialUrl"]
+    },
+    "Scholarship": {
+      "title": "Student Scholarship",
+      "description": "Financial aids and scholarships for students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "amount": { "type": "string" },
+        "eligibility": { "type": "string" },
+        "lastDate": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["id", "title", "amount", "eligibility", "lastDate", "officialUrl", "description"]
+    },
+    "ServiceItem": {
+      "title": "Government Service",
+      "description": "Online certificates or identities like Aadhaar or PAN which require digital services",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "categoryName": { "type": "string" },
+        "description": { "type": "string" },
+        "steps": { "type": "array" },
+        "officialUrl": { "type": "string" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "categoryName", "description", "steps", "officialUrl"]
+    }
+  },
+  "firestore": {
+    "schemes/{schemeId}": {
+      "schema": "Scheme",
+      "description": "Collection of government schemes"
+    },
+    "jobs/{jobId}": {
+      "schema": "Job",
+      "description": "Collection of recruitment jobs"
+    },
+    "scholarships/{scholarshipId}": {
+      "schema": "Scholarship",
+      "description": "Collection of educational scholarships"
+    },
+    "services/{serviceId}": {
+      "schema": "ServiceItem",
+      "description": "Collection of digital government services"
+    }
+  }
+}
