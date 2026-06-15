@@ -470,7 +470,7 @@ export default function App() {
 
   // Simulation Alert/Push Notifications State
   const [broadcastNotices, setBroadcastNotices] = useState<string[]>([
-    "স্বাগতম! বাংলার সরকার নাগরিক সেবা পোর্টালে পশ্চিমবঙ্গ রাজ্য সরকারের সমস্ত সামাজিক প্রকল্প, নিয়োগ এবং বৃত্তি সংক্রান্ত নির্ভরযোগ্য তথ্য বাংলায় পাবেন।"
+    "স্বাগতম! বাবাংলার সেবা নাগরিক সেবা পোর্টালে পশ্চিমবঙ্গ রাজ্য সরকারের সমস্ত সামাজিক প্রকল্প, নিয়োগ এবং বৃত্তি সংক্রান্ত নির্ভরযোগ্য তথ্য বাংলায় পাবেন।"
   ]);
 
   // Subscription Alerts (WhatsApp & Telegram signup)
@@ -599,11 +599,11 @@ export default function App() {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-extrabold text-xl md:text-2xl text-[#E96A1F] tracking-tight leading-none">
-                বাংলার সরকার
+                বাংলার সেবা
               </h1>
               <span className="bg-[#E96A1F]/10 text-[#A94F12] text-[9px] font-extrabold px-1.5 py-0.5 rounded">নাগরিক গাইড</span>
             </div>
-            {/* Tagline 1 */}
+            {/* Tagline 1 */}        
             <p className="text-[11px] text-slate-800 font-semibold leading-normal mt-1.5">
               আপনার সেবা, আপনার তথ্য, এক প্ল্যাটফর্মে (বেসরকারি উদ্যোগ)
             </p>
