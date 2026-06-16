@@ -264,9 +264,12 @@ export async function getSchemes(): Promise<Scheme[]> {
         }
       }
       
-      // If we got here, snapshot doesn't exist or is empty. Seed RTDB directly!
-      console.log("[Firebase RTDB] Seeding schemes into Realtime Database...");
-      for (const item of INITIAL_SCHEMES) {
+      // If we got here, snapshot doesn't exist or is empty. Seed RTDB directly from local store!
+      console.log("[Firebase RTDB] Seeding schemes into Realtime Database from active local store...");
+      const seedSource = localMemoryStore.schemes && localMemoryStore.schemes.length > 0 
+        ? localMemoryStore.schemes 
+        : INITIAL_SCHEMES;
+      for (const item of seedSource) {
         const payload = {
           id: item.id,
           title: item.title,
@@ -284,7 +287,7 @@ export async function getSchemes(): Promise<Scheme[]> {
         };
         await rtdbSet(ref(rtdb, `schemes/${item.id}`), payload);
       }
-      return INITIAL_SCHEMES;
+      return seedSource;
     } catch (err) {
       console.error("[Firebase RTDB] Error in getSchemes:", err);
     }
@@ -297,8 +300,11 @@ export async function getSchemes(): Promise<Scheme[]> {
       const qSnapshot = await getDocs(colRef);
       
       if (qSnapshot.empty) {
-        console.log("Seeding schemes into Firestore...");
-        for (const item of INITIAL_SCHEMES) {
+        console.log("Seeding schemes into Firestore form active local store...");
+        const seedSource = localMemoryStore.schemes && localMemoryStore.schemes.length > 0 
+          ? localMemoryStore.schemes 
+          : INITIAL_SCHEMES;
+        for (const item of seedSource) {
           const payload = {
             id: item.id,
             title: item.title,
@@ -325,7 +331,7 @@ export async function getSchemes(): Promise<Scheme[]> {
             }
           }
         }
-        return INITIAL_SCHEMES;
+        return seedSource;
       }
 
       const list: Scheme[] = [];
@@ -430,9 +436,12 @@ export async function getJobs(): Promise<Job[]> {
         }
       }
       
-      // Seed RTDB directly
-      console.log("[Firebase RTDB] Seeding jobs into Realtime Database...");
-      for (const item of INITIAL_JOBS) {
+      // Seed RTDB directly from local store!
+      console.log("[Firebase RTDB] Seeding jobs into Realtime Database from active local store...");
+      const seedSource = localMemoryStore.jobs && localMemoryStore.jobs.length > 0
+        ? localMemoryStore.jobs
+        : INITIAL_JOBS;
+      for (const item of seedSource) {
         const payload = {
           id: item.id,
           title: item.title,
@@ -450,7 +459,7 @@ export async function getJobs(): Promise<Job[]> {
         };
         await rtdbSet(ref(rtdb, `jobs/${item.id}`), payload);
       }
-      return INITIAL_JOBS;
+      return seedSource;
     } catch (err) {
       console.error("[Firebase RTDB] Error in getJobs:", err);
     }
@@ -463,8 +472,11 @@ export async function getJobs(): Promise<Job[]> {
       const qSnapshot = await getDocs(colRef);
       
       if (qSnapshot.empty) {
-        console.log("Seeding jobs into Firestore...");
-        for (const item of INITIAL_JOBS) {
+        console.log("Seeding jobs into Firestore from active local store...");
+        const seedSource = localMemoryStore.jobs && localMemoryStore.jobs.length > 0
+          ? localMemoryStore.jobs
+          : INITIAL_JOBS;
+        for (const item of seedSource) {
           const payload = {
             id: item.id,
             title: item.title,
@@ -491,7 +503,7 @@ export async function getJobs(): Promise<Job[]> {
             }
           }
         }
-        return INITIAL_JOBS;
+        return seedSource;
       }
 
       const list: Job[] = [];
@@ -595,9 +607,12 @@ export async function getScholarships(): Promise<Scholarship[]> {
         }
       }
       
-      // Seed RTDB directly
-      console.log("[Firebase RTDB] Seeding scholarships into Realtime Database...");
-      for (const item of INITIAL_SCHOLARSHIPS) {
+      // Seed RTDB directly from local store!
+      console.log("[Firebase RTDB] Seeding scholarships into Realtime Database from active local store...");
+      const seedSource = localMemoryStore.scholarships && localMemoryStore.scholarships.length > 0
+        ? localMemoryStore.scholarships
+        : INITIAL_SCHOLARSHIPS;
+      for (const item of seedSource) {
         const payload = {
           id: item.id,
           title: item.title,
@@ -611,7 +626,7 @@ export async function getScholarships(): Promise<Scholarship[]> {
         };
         await rtdbSet(ref(rtdb, `scholarships/${item.id}`), payload);
       }
-      return INITIAL_SCHOLARSHIPS;
+      return seedSource;
     } catch (err) {
       console.error("[Firebase RTDB] Error in getScholarships:", err);
     }
@@ -624,8 +639,11 @@ export async function getScholarships(): Promise<Scholarship[]> {
       const qSnapshot = await getDocs(colRef);
       
       if (qSnapshot.empty) {
-        console.log("Seeding scholarships into Firestore...");
-        for (const item of INITIAL_SCHOLARSHIPS) {
+        console.log("Seeding scholarships into Firestore from active local store...");
+        const seedSource = localMemoryStore.scholarships && localMemoryStore.scholarships.length > 0
+          ? localMemoryStore.scholarships
+          : INITIAL_SCHOLARSHIPS;
+        for (const item of seedSource) {
           const payload = {
             id: item.id,
             title: item.title,
@@ -648,7 +666,7 @@ export async function getScholarships(): Promise<Scholarship[]> {
             }
           }
         }
-        return INITIAL_SCHOLARSHIPS;
+        return seedSource;
       }
 
       const list: Scholarship[] = [];
@@ -748,9 +766,12 @@ export async function getServices(): Promise<ServiceItem[]> {
         }
       }
       
-      // Seed RTDB directly
-      console.log("[Firebase RTDB] Seeding services into Realtime Database...");
-      for (const item of SERVICES_DATA) {
+      // Seed RTDB directly from local store!
+      console.log("[Firebase RTDB] Seeding services into Realtime Database from active local store...");
+      const seedSource = localMemoryStore.services && localMemoryStore.services.length > 0
+        ? localMemoryStore.services
+        : SERVICES_DATA;
+      for (const item of seedSource) {
         const payload = {
           id: item.id,
           title: item.title,
@@ -767,7 +788,7 @@ export async function getServices(): Promise<ServiceItem[]> {
         };
         await rtdbSet(ref(rtdb, `services/${item.id}`), payload);
       }
-      return SERVICES_DATA;
+      return seedSource;
     } catch (err) {
       console.error("[Firebase RTDB] Error in getServices:", err);
     }
@@ -780,8 +801,11 @@ export async function getServices(): Promise<ServiceItem[]> {
       const qSnapshot = await getDocs(colRef);
       
       if (qSnapshot.empty) {
-        console.log("Seeding services into Firestore...");
-        for (const item of SERVICES_DATA) {
+        console.log("Seeding services into Firestore from active local store...");
+        const seedSource = localMemoryStore.services && localMemoryStore.services.length > 0
+          ? localMemoryStore.services
+          : SERVICES_DATA;
+        for (const item of seedSource) {
           const payload = {
             id: item.id,
             title: item.title,
@@ -807,7 +831,7 @@ export async function getServices(): Promise<ServiceItem[]> {
             }
           }
         }
-        return SERVICES_DATA;
+        return seedSource;
       }
 
       const list: ServiceItem[] = [];
@@ -910,12 +934,15 @@ export async function getCategories(): Promise<CategoryItem[]> {
         }
       }
       
-      // Seed RTDB directly
-      console.log("[Firebase RTDB] Seeding categories into Realtime Database...");
-      for (const cat of DEFAULT_CATEGORIES) {
+      // Seed RTDB directly from local store!
+      console.log("[Firebase RTDB] Seeding categories into Realtime Database from active local store...");
+      const seedSource = localMemoryStore.categories && localMemoryStore.categories.length > 0
+        ? localMemoryStore.categories
+        : DEFAULT_CATEGORIES;
+      for (const cat of seedSource) {
         await rtdbSet(ref(rtdb, `categories/${cat.id}`), cat);
       }
-      return DEFAULT_CATEGORIES;
+      return seedSource;
     } catch (err) {
       console.error("[Firebase RTDB] Error in getCategories:", err);
     }
@@ -929,7 +956,10 @@ export async function getCategories(): Promise<CategoryItem[]> {
       
       if (qSnapshot.empty) {
         // Seed first
-        for (const cat of DEFAULT_CATEGORIES) {
+        const seedSource = localMemoryStore.categories && localMemoryStore.categories.length > 0
+          ? localMemoryStore.categories
+          : DEFAULT_CATEGORIES;
+        for (const cat of seedSource) {
           await setDoc(doc(db, "categories", cat.id), cat);
           
           // Seed RTDB in parallel if alive
@@ -941,7 +971,7 @@ export async function getCategories(): Promise<CategoryItem[]> {
             }
           }
         }
-        return DEFAULT_CATEGORIES;
+        return seedSource;
       }
 
       const list: CategoryItem[] = [];
